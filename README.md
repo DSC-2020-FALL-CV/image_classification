@@ -24,11 +24,7 @@
 
 ## 테스크 체크하기
 
-**현재 테스크가 없습니다**
-
-
-
-- [notion]에서 할 일을 보고 완료하면 아래 본인의 이름이 적힌 체크 박스 수정해서 README.md push하기
+- [notion](https://www.notion.so/d19c503e4cef429e91d8e55869f1c854?v=a06e3886e88343b59b18cb6f0797ff2a&p=9fe3db0e8883418e850b5b3c24a6d7b8)에서 할 일을 보고 완료하면 아래 본인의 이름이 적힌 체크 박스 수정해서 README.md push하기
 - 모든 박스가 체크되면 notion의 task 상태가 In Progress에서 complete로 넘어갑니다
 
 - [ ] 김현구
