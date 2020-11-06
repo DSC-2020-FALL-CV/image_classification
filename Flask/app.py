@@ -9,8 +9,8 @@ from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 # 여기서 주소를 자기가 저장한 곳으로
-imagenet_class_index = json.load(open('./_static/imagenet_class_index.json'))
-model = models.densenet121(pretrained=True)
+imagenet_class_index = json.load(open('../_static/imagenet_class_index.json'))
+model = models.resnet18(pretrained=True)
 model.eval()
 
 
