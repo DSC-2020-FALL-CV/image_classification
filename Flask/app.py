@@ -5,11 +5,12 @@ from torchvision import models
 import torchvision.transforms as transforms
 from PIL import Image
 from flask import Flask, jsonify, request
+from flask import render_template
 
 
 app = Flask(__name__)
 # 여기서 주소를 자기가 저장한 곳으로
-imagenet_class_index = json.load(open('../_static/imagenet_class_index.json'))
+imagenet_class_index = json.load(open('./_static/imagenet_class_index.json'))
 model = models.resnet18(pretrained=True)
 model.eval()
 
@@ -33,8 +34,8 @@ def get_prediction(image_bytes):
     return imagenet_class_index[predicted_idx]
 
 @app.route('/')
-def hello():
-    return 'Image Classification Sample'
+def main():
+    return render_template('index.html')
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -43,7 +44,6 @@ def predict():
         img_bytes = file.read()
         class_id, class_name = get_prediction(image_bytes=img_bytes)
         return jsonify({'class_id': class_id, 'class_name': class_name})
-
 
 if __name__ == '__main__':
     app.run()
