@@ -25,7 +25,6 @@ def transform_image(image_bytes):
     image = Image.open(io.BytesIO(image_bytes))
     return my_transforms(image).unsqueeze(0)
 
-
 def get_prediction(image_bytes):
     tensor = transform_image(image_bytes=image_bytes)
     outputs = model.forward(tensor)
@@ -43,7 +42,7 @@ def predict():
         file = request.files['file']
         img_bytes = file.read()
         class_id, class_name = get_prediction(image_bytes=img_bytes)
-        return jsonify({'class_id': class_id, 'class_name': class_name})
+        return render_template('result.html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
