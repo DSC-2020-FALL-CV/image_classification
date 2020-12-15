@@ -14,9 +14,9 @@
         font-family: Arial, Helvetica, sans-serif;
     }
 
-    .header {
-        min-height: 100%;
-        background-color: rgb(20, 20, 20);
+    #header {
+        height: 100vh;
+        background-color: rgb(20, 20, 20, 0.3);
         /* Black background color */
         position: fixed;
         /* Make it stick/fixed */
@@ -24,13 +24,18 @@
         /* Stay on top */
         width: 100%;
         /* Full width */
+        display: block;
         transition: top 1.0s;
         /* Transition effect when sliding down (and up) */
     }
 
+    #main {
+        
+    }
+
     /* Page content */
-    .content {
-        padding: 20% 5% 5% 5%;
+    #content {
+        height: auto;
     }
 
     #outImage {
@@ -42,11 +47,31 @@
 </style>
 
 <body>
-    <div class="header"></div>
-    <div class="d-flex flex-column justify-content-center align-items-center">
-        <h1>Image Classification</h1>
-        <h1>Image Classification</h1>
-        <h1>Image Classification</h1>
+    <div id="header"></div>
+    <div id="main">
+        <div id="content">
+            <div class="content" style="font-size:30px;">
+                <h1 class="text-center pt-5">Image Classification</h1>
+                <img id="outImage" src="" width="300">
+                <div class="row">
+                    <div class="container col-md-offset-4 col-md-4 ">
+                        <form class="form-horizontal" action="./predict" method="post" enctype="multipart/form-data">
+                            <div class="form-group row">
+                                <div class="col-md-3"></div>
+                                <label class="btn btn-link btn-block btn-lg col-md-6">이미지 선택
+                                    <input class="form-control" type="file" name="file" id="file"
+                                        style="display: none;" />
+                                </label>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-4"></div>
+                                <button class="btn btn-primary btn-block btn-lg col-md-4" type="submit">제출</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -56,9 +81,10 @@
         window.onscroll = function () {
             var currentScrollPos = window.pageYOffset;
             if (prevScrollpos > currentScrollPos) {
-                document.getElementsByClassName("header").style.top = "0";
+                console.log(1);
+                document.getElementById("header").style.top = 0;
             } else {
-                document.getElementsByClassName("header").style.top = (-(h * heightProportion)) + "px";
+                document.getElementById("header").style.top = -(h*heightProportion) + "px";
             }
             prevScrollpos = currentScrollPos;
         }
