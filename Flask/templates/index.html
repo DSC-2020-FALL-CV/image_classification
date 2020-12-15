@@ -15,22 +15,25 @@
     }
 
     #header {
-        height: 100vh;
+        height: 110vh;
         background-color: rgb(20, 20, 20, 0.3);
-        /* Black background color */
-        position: fixed;
-        /* Make it stick/fixed */
-        top: 0;
-        /* Stay on top */
-        width: 100%;
-        /* Full width */
-        display: block;
-        transition: top 1.0s;
-        /* Transition effect when sliding down (and up) */
+        transition: margin-bottom 1.0s;
+        padding: 20px;
     }
 
     #main {
-        
+        width: 100%;
+        /* 100% Full-height */
+        height: 0;
+        /* 0 width - change this with JavaScript */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        bottom: 0;
+        background-color: white;
+        /* Black*/
+        transition: 1.0s;
+        /* 0.5 second transition effect to slide in the sidebar */
     }
 
     /* Page content */
@@ -75,16 +78,16 @@
     </div>
 
     <script>
-        var h = window.innerHeight;
-        var heightProportion = 0.8;
         var prevScrollpos = window.pageYOffset;
         window.onscroll = function () {
             var currentScrollPos = window.pageYOffset;
             if (prevScrollpos > currentScrollPos) {
-                console.log(1);
-                document.getElementById("header").style.top = 0;
+                document.getElementById("main").style.height = "0";
+                document.getElementById("header").style.marginBottom = "0";
             } else {
-                document.getElementById("header").style.top = -(h*heightProportion) + "px";
+                document.getElementById("main").style.height = "70vh";
+                document.getElementById("header").style.marginBottom = "70vh";
+
             }
             prevScrollpos = currentScrollPos;
         }
