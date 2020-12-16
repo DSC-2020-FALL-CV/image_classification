@@ -41,6 +41,8 @@
 
     .header-subtitle {
         font-size: 1.6rem;
+        text-align: right;
+        color: black;
     }
 
     #main {
@@ -75,9 +77,9 @@
         text-align: right;
     }
 
-    .content-form{
+    .content-form {
         min-width: 50%;
-        padding: 5.0rem 5.0rem;
+        padding: 2.0rem 5.0rem;
     }
 
     #outImage {
@@ -95,6 +97,9 @@
             이미지 분류하기
         </div>
         <hr style="margin-top: 5.0rem; border: solid 0.5rem black;">
+        <div class="header-subtitle">
+            아래로 스크롤
+        </div>
     </div>
     <div id="main" class="container-fluid">
         <div id="content">
@@ -118,32 +123,6 @@
                 <div class="content-text">이미지를<br>제출하세요</div>
             </div>
         </div>
-
-
-    </div>
-    </div>
-    <!-- <div id="content">
-            <div class="content" style="font-size:30px;">
-                <img id="outImage" src="" width="300">
-                <div class="row">
-                    <div class="container col-md-offset-4 col-md-4 ">
-                        <form class="form-horizontal" action="./predict" method="post" enctype="multipart/form-data">
-                            <div class="form-group row">
-                                <div class="col-md-3"></div>
-                                <label class="btn btn-link btn-block btn-lg col-md-6">사진 선택하기
-                                    <input class="form-control" type="file" name="file" id="file"
-                                        style="display: none;" />
-                                </label>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-4"></div>
-                                <button class="btn btn-primary btn-block btn-lg col-md-4" type="submit">제출하기</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div> -->
     </div>
 
     <script>
@@ -154,8 +133,8 @@
                 document.getElementById("main").style.height = "0";
                 document.getElementById("header").style.marginBottom = "0";
             } else {
-                document.getElementById("main").style.height = "60vh";
-                document.getElementById("header").style.marginBottom = "60vh";
+                document.getElementById("main").style.height = "45vh";
+                document.getElementById("header").style.marginBottom = "45vh";
             }
             prevScrollpos = currentScrollPos;
         }
