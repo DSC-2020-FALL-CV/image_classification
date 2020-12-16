@@ -9,72 +9,141 @@
     <title>Image Classification</title>
 </head>
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
+
+    html,
+    * {
+        font-family: 'Noto Sans KR', sans-serif;
+    }
+
     body {
         margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
+        /* background: linear-gradient(#190a05,#870000); */
+        /* background: linear-gradient(#ffafbd, #c9ffbf); */
+        /* background: linear-gradient(#061161, #780206); */
+        background: linear-gradient(#70e1f5, #ffd194);
+        /* background: linear-gradient(#24fe41,#fdfc47); */
+        /* background: linear-gradient(#ff4b1f, #ff9068); */
     }
 
     #header {
-        height: 110vh;
-        background-color: rgb(20, 20, 20, 0.3);
+        height: 105vh;
+        padding: 3.0rem 3.0rem;
         transition: margin-bottom 1.0s;
-        padding: 20px;
+    }
+
+    .header-title {
+        font-size: 9.0rem;
+        font-weight: 600;
+        line-height: 11.0rem;
+        color: black;
+    }
+
+    .header-subtitle {
+        font-size: 1.6rem;
     }
 
     #main {
         width: 100%;
-        /* 100% Full-height */
         height: 0;
-        /* 0 width - change this with JavaScript */
         position: fixed;
-        /* Stay in place */
         z-index: 1;
         bottom: 0;
-        background-color: white;
-        /* Black*/
+        background: white;
+        /* padding: 3.0rem 3.0rem; */
+        /* background: linear-gradient(#403A3E, #BE5869); */
         transition: 1.0s;
-        /* 0.5 second transition effect to slide in the sidebar */
     }
 
-    /* Page content */
+    .main-title {
+        font-size: 10.0rem;
+        font-weight: 600;
+        line-height: 13.0rem;
+        color: black;
+    }
+
     #content {
         height: auto;
     }
 
+    .content-text {
+        font-size: 9.0rem;
+        font-weight: 600;
+        line-height: 11.0rem;
+        color: black;
+        align-items: center;
+        text-align: right;
+    }
+
+    .content-form{
+        min-width: 50%;
+        padding: 5.0rem 5.0rem;
+    }
+
     #outImage {
         display: block;
-        margin-left: auto;
-        margin-right: auto;
+        margin-left: 0.5rem;
+        /* margin-right: auto; */
         width: 300px;
     }
 </style>
 
 <body>
-    <div id="header"></div>
-    <div id="main">
+    <div id="header" class="container-fluid">
+        <div class="header-title">
+            PYTORCH, FLASK와<br>함께하는<br>
+            이미지 분류하기
+        </div>
+        <hr style="margin-top: 5.0rem; border: solid 0.5rem black;">
+    </div>
+    <div id="main" class="container-fluid">
         <div id="content">
+            <div class="row">
+                <div class="col">
+                    <div class="content-form">
+                        <form class="form-inline" action="./predict" method="post" enctype="multipart/form-data"">
+                            <div class=" form-group mx-sm-3 mb-2">
+                            <label class="btn btn-outline-dark btn-lg">사진 선택하기
+                                <input class="form-control" type="file" name="file" id="file" style="display: none;" />
+                            </label>
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <button class="btn btn-dark btn-lg" type="submit">제출하기</button>
+                    </div>
+                    </form>
+                    <img id="outImage" src="" width="300">
+                </div>
+            </div>
+            <div class="col">
+                <div class="content-text">이미지를<br>제출하세요</div>
+            </div>
+        </div>
+
+
+    </div>
+    </div>
+    <!-- <div id="content">
             <div class="content" style="font-size:30px;">
-                <h1 class="text-center pt-5">Image Classification</h1>
                 <img id="outImage" src="" width="300">
                 <div class="row">
                     <div class="container col-md-offset-4 col-md-4 ">
                         <form class="form-horizontal" action="./predict" method="post" enctype="multipart/form-data">
                             <div class="form-group row">
                                 <div class="col-md-3"></div>
-                                <label class="btn btn-link btn-block btn-lg col-md-6">이미지 선택
+                                <label class="btn btn-link btn-block btn-lg col-md-6">사진 선택하기
                                     <input class="form-control" type="file" name="file" id="file"
                                         style="display: none;" />
                                 </label>
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-4"></div>
-                                <button class="btn btn-primary btn-block btn-lg col-md-4" type="submit">제출</button>
+                                <button class="btn btn-primary btn-block btn-lg col-md-4" type="submit">제출하기</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <script>
@@ -85,9 +154,8 @@
                 document.getElementById("main").style.height = "0";
                 document.getElementById("header").style.marginBottom = "0";
             } else {
-                document.getElementById("main").style.height = "70vh";
-                document.getElementById("header").style.marginBottom = "70vh";
-
+                document.getElementById("main").style.height = "60vh";
+                document.getElementById("header").style.marginBottom = "60vh";
             }
             prevScrollpos = currentScrollPos;
         }
