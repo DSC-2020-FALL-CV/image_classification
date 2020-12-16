@@ -42,7 +42,7 @@ def predict():
         file = request.files['file']
         img_bytes = file.read()
         class_id, class_name = get_prediction(image_bytes=img_bytes)
-        return render_template('result.html')
+        return render_template('result.html', class_name=class_name)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
