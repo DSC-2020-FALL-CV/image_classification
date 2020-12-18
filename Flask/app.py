@@ -7,6 +7,7 @@ from PIL import Image
 from flask import Flask, jsonify, request
 from flask import render_template
 
+import search
 
 app = Flask(__name__)
 # 여기서 주소를 자기가 저장한 곳으로
@@ -42,7 +43,14 @@ def predict():
         file = request.files['file']
         img_bytes = file.read()
         class_id, class_name = get_prediction(image_bytes=img_bytes)
+
+        #delete _ from classname
+        class_name = class_name.replace("_", " ")
+        search.wiki(class_name)
+
         return render_template('result.html', class_name=class_name, class_id=class_id)
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
