@@ -34,7 +34,7 @@ def get_prediction(image_bytes):
 
 @app.route('/')
 def main():
-    return render_template('index.html')
+    return render_template('main.html')
 
 @app.route('/predict', methods=['POST'])
 def predict():
