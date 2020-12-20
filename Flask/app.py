@@ -50,9 +50,9 @@ def predict():
         class_name = class_name.replace("_", " ")
 
         #search.wiki(class_name)
-        class_name, character, info = search.dogSite(class_name.replace(" ", "+"))
+        class_name, character, info, img_src = search.dogSite(class_name.replace(" ", "+"))
 
-        return render_template('result.html', class_name=class_name, class_id=class_id, character = character, info = info)
+        return render_template('result.html', class_name=class_name, class_id=class_id, character = character, info = info, img_src = img_src)
 
 
 

@@ -25,6 +25,11 @@
             /* background: linear-gradient(#ff4b1f, #ff9068); */
         }
 
+        img {
+            max-width: 500px;
+            max-height: 500px;
+        }
+
         #header {
             height: 105vh;
             padding: 10.0rem 3.0rem 0.0rem 3.0rem;
@@ -63,6 +68,8 @@
         .content-form {
             padding: 5.0rem 5.0rem;
         }
+
+        
     </style>
 </head>
 
@@ -81,8 +88,14 @@
                 <h1>Prediction</h1>
                 <h5>Detected Image: {{ class_name }}</h5>
                 <h5>ImageNet Class ID: {{ class_id }}</h5>
+
+                <!--배열형태 정리하기-->
                 <h5>{{character}}</h5>
+
+                <!--이미지 src 배열만큼 넘기면서 볼수있게-->
+                <img src= "{{img_src[0]}}">
                 <h5>{{info}}</h5>
+                
             </form>
         </div>
     </div>
@@ -95,7 +108,7 @@
                 document.getElementById("main").style.height = "0";
                 document.getElementById("header").style.marginBottom = "0";
             } else {
-                document.getElementById("main").style.height = "45vh";
+                document.getElementById("main").style.height = "90vh";
                 document.getElementById("header").style.marginBottom = "45vh";
             }
             prevScrollpos = currentScrollPos;

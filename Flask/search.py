@@ -30,7 +30,9 @@ def dogSite(class_name):
     html = urlopen("https://www.akc.org/?s=" + class_name)
     bsObject = BeautifulSoup(html,"html.parser")
 
-    secondURL = None
+    secondUrl = None
+    result = []
+    img_src = []
 
     #get secondURL 
     for link in bsObject.find_all('a'):
@@ -38,16 +40,19 @@ def dogSite(class_name):
         if url is not None:
             if("/dog-breeds/" in url) and not(url.endswith("/dog-breeds/")):
                 secondUrl = url
-                print(link.text.strip(), url)
+                #print(link.text.strip(), url)
                 break
-
     
     #search at secondURL
-    if secondUrl is not None:
+    if secondUrl is None:
+        information = "Sorry, We can't find an information"
+        name = class_name
+        result = None
+        img_src = None
+    
+    else:
         html = urlopen(secondUrl)
         bsObject = BeautifulSoup(html,"html.parser")
-
-        result = []
         
         name = bsObject.find("h1",{"class" : "page-header__title"}).string
         name = name.replace("\n","").strip()
@@ -58,6 +63,7 @@ def dogSite(class_name):
         information = bsObject.find("div",{"class" : "breed-hero__footer"}).string
         information = information.replace("\n","").strip()
 
-        print(result)
+        for img in bsObject.find_all("img",{"class" : "media-wrap__image lozad"}):
+            img_src.append(img.get('data-src'))
 
-        return name, result, information
+    return name, result, information, img_src
