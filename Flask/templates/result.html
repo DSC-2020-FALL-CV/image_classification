@@ -72,10 +72,42 @@
         }
 
         .content-form {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
             padding: 5.0rem 5.0rem;
         }
+        /* Slideshow container */
+        .slideshow-container {
+            display: flex;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
 
-        
+        /* Next & previous buttons */
+        .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        /* Position the "next button" to the right */
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
     </style>
 </head>
 
@@ -91,39 +123,31 @@
     <div id="main" class="container-fluid">
         <div id="content">
             <form class="content-form" method=post enctype=multipart/form-data>
-                <h1>Prediction</h1>
-                <h5>Detected Image: {{ class_name }}</h5>
-                <!--
-                <h5>ImageNet Class ID: {{ class_id }}</h5>
-                -->
-
-                <!--배열형태 정리하기-->
-                <!--
-                <h5>{{character}}</h5>
-                -->
-                <div class="row">
-                    <div class="col-xs-8 col-md-6">
-                        <h5>Temperament: {{character[1]}}</h5>
-                        <h5>Height: {{character[5]}}</h5>
-                        <h5>Weight: {{character[7]}}</h5>
-                        <h5>Life Expectancy: {{character[9]}}</h5>
-                        <h5><br>{{info}}</h5>
-                        <br>
+                <div class="content-text">
+                    <h1>Prediction</h1>
+                    <h5>Detected Image: {{ class_name }}</h5>
+                    <div class="row">
+                        <div class="col-xs-8 col-md-6">
+                            <h5>Temperament: {{character[1]}}</h5>
+                            <h5>Height: {{character[5]}}</h5>
+                            <h5>Weight: {{character[7]}}</h5>
+                            <h5>Life Expectancy: {{character[9]}}</h5>
+                            <h5><br>{{info}}</h5>
+                            <br>
+                        </div>
                     </div>
                 </div>
-
-                <div class="row">
-                    <!--이미지 src 배열만큼 넘기면서 볼수있게-->
+                <!-- Slideshow container -->
+                <div class="slideshow-container">
                     {% for image in img_src %}
-                    <div class="col-xs-6 col-md-4">
-                        <img src= "{{image}}">
+                    <div class="slideshow-img">
+                        <img src="{{image}}">
                     </div>
                     {% endfor %}
+                    <!-- Next and previous buttons -->
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
                 </div>
-                    
-                    
-                
-
             </form>
         </div>
     </div>
@@ -140,6 +164,30 @@
                 document.getElementById("header").style.marginBottom = "45vh";
             }
             prevScrollpos = currentScrollPos;
+        }
+
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        // Next/previous controls
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        // Thumbnail image controls
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("slideshow-img");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex - 1].style.display = "block";
         }
     </script>
 </body>
