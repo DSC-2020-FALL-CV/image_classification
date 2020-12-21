@@ -43,13 +43,12 @@ def predict():
         file = request.files['file']
         img_bytes = file.read()
         class_id, class_name = get_prediction(image_bytes=img_bytes)
-
         print(class_name)
-        
-        #delete _ from classname
-        class_name = class_name.replace("_", " ")
 
-        #search.wiki(class_name)
+        #delete _ from classname
+        class_name = class_name.replace("_", " ")    
+        
+        #search.wiki2(class_name)
         class_name, character, info, img_src = search.dogSite(class_name.replace(" ", "+"))
 
         return render_template('result.html', class_name=class_name, class_id=class_id, character = character, info = info, img_src = img_src)

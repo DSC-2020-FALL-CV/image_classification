@@ -8,8 +8,19 @@ from googletrans import Translator
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
-#english word -> translate korean -> search wiki
+
+#english word
 def wiki(class_name):
+
+    print("이름 : " + class_name)
+    wiki = wikipediaapi.Wikipedia(language='en')
+    p_wiki = wiki.page(class_name)
+	#페이지 있으면 페이지 출력
+    if(p_wiki.exists()):
+        print(p_wiki.text)
+
+#english word -> translate korean -> search wiki
+def wiki2(class_name):
     wiki = wikipediaapi.Wikipedia( 
         language='ko', 
         extract_format=wikipediaapi.ExtractFormat.WIKI)
@@ -17,13 +28,13 @@ def wiki(class_name):
     trans = Translator(service_urls=['translate.googleapis.com'])
     result = trans.translate(class_name, dest='ko', src='en')
     class_name = result.text
-    print(class_name)
-    p_wiki = wiki.page(class_name)
 
-    print("Page - Exists: %s" % p_wiki.exists())
+    print(result.origin + " " + result.text)
+    p_wiki = wiki.page(class_name)
 
     if(p_wiki.exists()):
         print(p_wiki.text)
+
 
 #search from site
 def dogSite(class_name):
@@ -63,7 +74,13 @@ def dogSite(class_name):
         information = bsObject.find("div",{"class" : "breed-hero__footer"}).string
         information = information.replace("\n","").strip()
 
+        count = 0
         for img in bsObject.find_all("img",{"class" : "media-wrap__image lozad"}):
+            
             img_src.append(img.get('data-src'))
+            count = count+1
+            #사진 5장 제한
+            if(count == 6):
+                break
 
     return name, result, information, img_src
