@@ -1,6 +1,8 @@
 import io
 import json
 
+import torch
+from torch import nn
 from torchvision import models
 import torchvision.transforms as transforms
 from PIL import Image
@@ -11,8 +13,17 @@ import search
 
 app = Flask(__name__)
 # 여기서 주소를 자기가 저장한 곳으로
-imagenet_class_index = json.load(open('./_static/imagenet_class_index.json'))
-model = models.resnet18(pretrained=True)
+imagenet_class_index = json.load(open('./_static/dog_class_index.json'))
+model = models.resnet18()
+num_in = model.fc.in_features
+num_out = 120
+model.fc = nn.Sequential(
+    nn.Linear(
+        in_features = num_in,
+        out_features = num_out,
+        bias=True),
+    nn.LogSoftmax(dim=1))
+model.load_state_dict(torch.load('../Model/dog_prediction.pt', map_location=torch.device('cpu')))
 model.eval()
 
 
@@ -46,8 +57,9 @@ def predict():
 
         print(class_name)
         
-        #delete _ from classname
+        #delete _ and - from classname
         class_name = class_name.replace("_", " ")
+        class_name = class_name.replace("-", " ")
 
         #search.wiki(class_name)
         class_name, character, info, img_src = search.dogSite(class_name.replace(" ", "+"))
