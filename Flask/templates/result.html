@@ -79,7 +79,7 @@
         }
         /* Slideshow container */
         .slideshow-container {
-            display: flex;
+            overflow: hidden;
             width: 100%;
             margin: 0;
             padding: 0;
@@ -160,7 +160,7 @@
                 document.getElementById("main").style.height = "0";
                 document.getElementById("header").style.marginBottom = "0";
             } else {
-                document.getElementById("main").style.height = "90vh";
+                document.getElementById("main").style.height = "55vh";
                 document.getElementById("header").style.marginBottom = "45vh";
             }
             prevScrollpos = currentScrollPos;

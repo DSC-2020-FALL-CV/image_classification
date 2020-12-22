@@ -51,7 +51,7 @@ def dogSite(class_name):
         if url is not None:
             if("/dog-breeds/" in url) and not(url.endswith("/dog-breeds/")):
                 secondUrl = url
-                #print(link.text.strip(), url)
+                print(link.text.strip(), url)
                 break
     
     #search at secondURL
