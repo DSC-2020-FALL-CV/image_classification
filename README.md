@@ -1,5 +1,6 @@
 # Dog-Breed classification via Image
 
+
 ## Activation
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/63439738/123533663-11272400-d752-11eb-9ec5-8be980118e13.gif)
 
