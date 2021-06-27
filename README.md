@@ -1,4 +1,7 @@
-# image_classification
+# Dog-Breed classification via Image
+
+## Activation
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/63439738/123533663-11272400-d752-11eb-9ec5-8be980118e13.gif)
 
 ## Flask
 
@@ -36,13 +39,3 @@
 * `ps -ef | grep flask`를 실행하여 `python3 -m flask run --host=0.0.0.0` 프로세스의 pid 확인
 * `kill <pid>`를 실행하여 프로세스 종료
 
-
-## 테스크 체크하기
-
-- [notion](https://www.notion.so/d19c503e4cef429e91d8e55869f1c854?v=a06e3886e88343b59b18cb6f0797ff2a&p=9fe3db0e8883418e850b5b3c24a6d7b8)에서 할 일을 보고 완료하면 아래 본인의 이름이 적힌 체크 박스 수정해서 README.md push하기
-- 모든 박스가 체크되면 notion의 task 상태가 In Progress에서 complete로 넘어갑니다
-
-- [ ] 김현구
-- [ ] 엄현식
-- [ ] 이근희
-- [ ] 이준영
